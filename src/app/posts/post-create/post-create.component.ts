@@ -17,11 +17,7 @@ export class PostCreateComponent {
       return;
     }
 
-    this.postsService
-      .addPost(form.value.title, form.value.content)
-      .subscribe((res) => {
-        console.log(res.message);
-        form.resetForm();
-      });
+    this.postsService.addPost(form.value.title, form.value.content);
+    form.resetForm();
   }
 }
