@@ -3,6 +3,7 @@ import { Post } from '../post.model';
 import { PostsService } from '../posts.service';
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-post-list',
@@ -10,7 +11,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./post-list.component.scss'],
 })
 export class PostListComponent implements OnInit, OnDestroy {
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService, private authService: AuthService) {}
 
   // posts = [
   //   { title: 'First post', content: "This is the first post's content" },
@@ -19,6 +20,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   // ];
   posts: Post[] = [];
   private postsSub: Subscription = new Subscription();
+  private authStatusSub: Subscription = new Subscription();
+  userIsAuthenticated : boolean = false;
 
   totalPosts = 0;
   currentPage = 1;
@@ -36,6 +39,11 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.posts = postsData.posts;
         this.totalPosts = postsData.postCount;
       });
+
+    this.userIsAuthenticated = this.authService.getIsAuthenticate();
+    this.authStatusSub = this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
+      this.userIsAuthenticated = isAuthenticated;
+    })
   }
 
   getAllPosts() {
@@ -60,4 +68,5 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsPerPage = pageData.pageSize;
     this.getAllPosts();
   }
+
 }
