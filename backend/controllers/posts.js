@@ -110,7 +110,7 @@ exports.getPost = (req, res) => {
 }
 
 exports.deletePost = (req, res, next) => {
-  // console.log(req.params.id);
+  console.log(req.params);
   Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then((result) => {
     if(result.deletedCount > 0) {
       res.status(200).json({
