@@ -6,23 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { HeaderComponent } from './posts/header/header.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { PostListComponent } from './posts/post-list/post-list.component';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatDialogModule} from '@angular/material/dialog';
 
+import { HeaderComponent } from './posts/header/header.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthIntercepter } from './auth/auth-interceptor';
 import { ErrorIntercepter } from './error-interceptor';
 import { ErrorComponent } from './posts/error/error.component';
+import { AngularMaterialModule } from './angular-material.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,14 +33,7 @@ import { ErrorComponent } from './posts/error/error.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatExpansionModule,
-    MatProgressSpinnerModule,
-    MatPaginatorModule,
-    MatDialogModule
+    AngularMaterialModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true },
