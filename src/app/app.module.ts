@@ -4,11 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HeaderComponent } from './posts/header/header.component';
-import { PostListComponent } from './posts/post-list/post-list.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -16,12 +14,11 @@ import { AuthIntercepter } from './auth/auth-interceptor';
 import { ErrorIntercepter } from './error-interceptor';
 import { ErrorComponent } from './posts/error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
+import { PostsModule } from './posts/posts.module';
 @NgModule({
   declarations: [
     AppComponent,
-    PostCreateComponent,
     HeaderComponent,
-    PostListComponent,
     LoginComponent,
     SignupComponent,
     ErrorComponent
@@ -30,10 +27,10 @@ import { AngularMaterialModule } from './angular-material.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    PostsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthIntercepter, multi: true },
